@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input, textarea, select, date, input[type="date"] {
+    @apply border border-gray-700 rounded-md text-black bg-gray-900 text-gray-300
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.8;
+    filter: invert(1);
+}
+
+h1 {
+    @apply text-4xl font-bold
+}
+
+h2 {
+    @apply text-3xl font-bold
+}
+
+h3 {
+    @apply text-2xl font-bold
+}
+
+h4 {
+    @apply text-xl font-bold
+}

@@ -11,11 +11,16 @@ class FilamentRoll extends Model
 
     protected $guarded = [];
 
-    protected $with = ['filament'];
+    protected $with = ['filament', 'usages'];
 
     public function filament()
     {
         return $this->belongsTo(Filament::class);
+    }
+
+    public function usages()
+    {
+        return $this->hasMany(FilamentUsage::class);
     }
 
     public function user()

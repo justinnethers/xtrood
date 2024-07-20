@@ -28,4 +28,9 @@ class Filament extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function filamentRolls()
+    {
+        return $this->hasMany(FilamentRoll::class);
+    }
 }
