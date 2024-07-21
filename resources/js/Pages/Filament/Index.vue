@@ -53,13 +53,13 @@ console.log('fullRollsGroupedByColor', fullRollsGroupedByColor);
 
     <AuthenticatedLayout>
         <template #header>
-            <h1 class="text-slate-50">My Filament</h1>
+            <h1 class="text-slate-50">Filament Inventory</h1>
         </template>
 
-        <div class="p-8 container mx-auto">
+        <div class="">
             <div class="p-8 bg-slate-700 rounded">
                 <div v-if="partialRolls.length">
-                    <h2 class="text-slate-50 mb-2">Partial Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Partial Rolls</h2>
                     <ul class="grid grid-cols-3 gap-6">
                         <li
                             v-for="roll in partialRolls"
@@ -76,7 +76,7 @@ console.log('fullRollsGroupedByColor', fullRollsGroupedByColor);
                 </div>
 
                 <div v-if="fullRolls.length">
-                    <h2 class="text-slate-50 mb-2">Sealed Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Sealed Rolls</h2>
                     <ul class="grid grid-cols-4 gap-6">
                         <li
                             v-for="color in fullRollsGroupedByColor"
@@ -114,7 +114,7 @@ console.log('fullRollsGroupedByColor', fullRollsGroupedByColor);
 
 
                 <div v-if="emptyRolls.length">
-                    <h2 class="text-slate-50 mb-2">Empty Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Empty Rolls</h2>
                     <ul class="grid grid-cols-5 gap-6">
                         <li
                             v-for="roll in emptyRolls"

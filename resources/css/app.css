@@ -15,11 +15,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 h1 {
-    @apply text-4xl font-bold
+    @apply text-4xl font-bold inline-block
 }
 
 h2 {
-    @apply text-3xl font-bold
+    @apply text-3xl font-bold inline-block
+}
+
+h1:after, h2:after {
+    content: '';
+    @apply h-2 bg-gradient-to-r from-blue-400 to-blue-800 block my-2 rounded-xl
+}
+
+h2:after {
+    @apply h-1
 }
 
 h3 {
@@ -35,4 +44,8 @@ h4 {
 }
 .button:hover {
     @apply bg-gradient-to-r from-blue-900 to-blue-800 shadow-lg
+}
+
+.logo {
+    @apply text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-blue-400 via-blue-500 to-blue-800
 }

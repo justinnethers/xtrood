@@ -6,7 +6,7 @@
                 <TextInput name="name" id="name" v-model="form.name" />
             </div>
             <div class="flex flex-col">
-                <button type="submit">Add</button>
+                <button class="button" type="submit">Add Brand</button>
             </div>
         </div>
     </form>

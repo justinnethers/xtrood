@@ -10,7 +10,7 @@
                 <TextInput name="hex" id="hex" v-model="form.hex" />
             </div>
             <div class="flex flex-col">
-                <button type="submit">Add</button>
+                <button class="button" type="submit">Add Color</button>
             </div>
         </div>
     </form>
