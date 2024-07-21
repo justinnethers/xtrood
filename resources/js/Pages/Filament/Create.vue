@@ -1,31 +1,19 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, router} from '@inertiajs/vue3';
+import {Head, router, usePage} from '@inertiajs/vue3';
 import FilamentRoll from "@/Components/FilamentRoll.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import {onMounted, reactive, ref} from "vue";
+import {computed, onMounted, reactive, ref} from "vue";
 import Modal from "@/Components/Modal.vue";
 import BrandForm from "@/Pages/Filament/partials/BrandForm.vue";
 import ColorForm from "@/Pages/Filament/partials/ColorForm.vue";
 
-defineProps({
-    filamentRolls: {
-        type: Array,
-    },
-    brands: {
-        type: Object,
-        required: true,
-    },
-    filamentTypes: {
-        type: Object,
-        required: true,
-    },
-    colors: {
-        type: Object,
-        required: true,
-    },
-});
+const page = usePage()
+
+const brands = computed(() => page.props.brands);
+const filamentTypes = computed(() => page.props.filamentTypes);
+const colors = computed(() => page.props.colors);
 
 const form = reactive({
     brand_id: '',

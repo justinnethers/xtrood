@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Filament;
+use App\Models\FilamentRoll;
 use Illuminate\Http\Request;
 
 class FilamentController extends Controller
@@ -20,6 +21,13 @@ class FilamentController extends Controller
             'brands' => \App\Models\Brand::all(),
             'filamentTypes' => \App\Models\FilamentType::all(),
             'colors' => \App\Models\Color::all(),
+        ]);
+    }
+
+    public function show(FilamentRoll $filamentRoll)
+    {
+        return inertia('Filament/Show', [
+            'filamentRoll' => $filamentRoll,
         ]);
     }
 

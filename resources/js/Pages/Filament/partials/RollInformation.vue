@@ -1,8 +1,10 @@
 <template>
     <div class="flex flex-col w-full">
         <div class="text-2xl">
-            <h3>{{ roll.filament.brand.name }}</h3>
-            <p>{{ roll.filament.color.name }} {{ roll.filament.filament_type.name }}</p>
+            <Link :href="route('filament.show', {filamentRoll: roll.id})" class="cursor-pointer hover:underline">
+                <h3>{{ roll.filament.brand.name }}</h3>
+                <p>{{ roll.filament.color.name }} {{ roll.filament.filament_type.name }}</p>
+            </Link>
             <p v-if="showRemaining">
                 <span v-if="remainingWeight">
                     ~<span class="font-bold">{{ remainingWeight }}g</span> left
@@ -19,7 +21,7 @@
         </div>
         <Modal :show="showUsageModal" @close="showUsageModal = false">
             <div class="p-8">
-                <FilamentUsageForm :filament-roll-id="roll.id" @submitted="showUsageModal = false" />
+                <FilamentUsageForm :filament-roll-id="roll.id" @submitted="showUsageModal = false"/>
             </div>
         </Modal>
     </div>
@@ -29,6 +31,7 @@
 import {computed, defineProps, ref} from 'vue';
 import Modal from "@/Components/Modal.vue";
 import FilamentUsageForm from "@/Pages/Filament/partials/FilamentUsageForm.vue";
+import { Link } from '@inertiajs/vue3';
 
 const showUsageModal = ref(false);
 

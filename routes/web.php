@@ -26,6 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::prefix('filament')->middleware(['auth', 'verified'])->group(function () {
     Route::get('', [FilamentController::class, 'index'])->name('filament.index');
     Route::get('create', [FilamentController::class, 'create'])->name('filament.create');
+    Route::get('{filamentRoll}', [FilamentController::class, 'show'])->name('filament.show');
     Route::post('', [FilamentController::class, 'store'])->name('filament.store');
     Route::delete('destroy/{filamentRoll}', [FilamentController::class, 'destroy'])->name('filament.destroy');
     Route::post('use', [FilamentUsageController::class, 'store'])->name('filament.use');
