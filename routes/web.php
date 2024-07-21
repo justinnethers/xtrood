@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\FilamentController;
+use App\Http\Controllers\FilamentUsageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,9 @@ Route::prefix('filament')->middleware(['auth', 'verified'])->group(function () {
     Route::get('create', [FilamentController::class, 'create'])->name('filament.create');
     Route::post('', [FilamentController::class, 'store'])->name('filament.store');
     Route::delete('destroy/{filamentRoll}', [FilamentController::class, 'destroy'])->name('filament.destroy');
+    Route::post('use', [FilamentUsageController::class, 'store'])->name('filament.use');
 });
+
 
 Route::post('brands', [BrandController::class, 'store'])
     ->middleware('auth')

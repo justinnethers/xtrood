@@ -10,7 +10,7 @@ class FilamentController extends Controller
     public function index()
     {
         return inertia('Filament/Index', [
-            'filamentRolls' => auth()->user()->filamentRolls,
+            'filamentRolls' => auth()->user()->filamentRolls()->get(),
         ]);
     }
 
