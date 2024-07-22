@@ -5,16 +5,9 @@ import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
 import {computed} from "vue";
 
-// const props = defineProps({
-//     filamentRolls: {
-//         type: Array,
-//     }
-// });
+const page = usePage();
 
-const page = usePage()
-
-const filamentRolls = computed(() => page.props.filamentRolls)
-console.log('filamentRolls', filamentRolls);
+const filamentRolls = computed(() => page.props.filamentRolls);
 
 const fullRolls = computed(() => filamentRolls.value.filter(roll => roll.usages.length == 0));
 const partialRolls = computed(() => filamentRolls.value.filter(roll => {
@@ -32,8 +25,6 @@ const emptyRolls = computed(() => filamentRolls.value.filter(roll => {
     return true;
 }));
 
-console.log('emptyRolls', emptyRolls);
-
 const fullRollsGroupedByColor = computed(() => {
     return fullRolls.value.reduce((acc, roll) => {
         if (!acc[roll?.filament.color.name]) {
@@ -43,8 +34,6 @@ const fullRollsGroupedByColor = computed(() => {
         return acc;
     }, {});
 });
-
-console.log('fullRollsGroupedByColor', fullRollsGroupedByColor);
 
 </script>
 
