@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(FilamentRoll::class);
     }
+
+    public function printedItems()
+    {
+        return $this->hasMany(PrintedItem::class);
+    }
 }

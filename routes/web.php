@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\FilamentController;
 use App\Http\Controllers\FilamentUsageController;
+use App\Http\Controllers\PrintedItemController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,13 +24,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::prefix('filament')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('filaments')->middleware(['auth', 'verified'])->group(function () {
     Route::get('', [FilamentController::class, 'index'])->name('filament.index');
     Route::get('create', [FilamentController::class, 'create'])->name('filament.create');
     Route::get('{filamentRoll}', [FilamentController::class, 'show'])->name('filament.show');
     Route::post('', [FilamentController::class, 'store'])->name('filament.store');
     Route::delete('destroy/{filamentRoll}', [FilamentController::class, 'destroy'])->name('filament.destroy');
     Route::post('use', [FilamentUsageController::class, 'store'])->name('filament.use');
+});
+
+Route::prefix('prints')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('', [PrintedItemController::class, 'index'])->name('print.index');
+    Route::get('create', [PrintedItemController::class, 'create'])->name('print.create');
+    Route::get('{printedItem}', [PrintedItemController::class, 'show'])->name('print.show');
+    Route::post('', [PrintedItemController::class, 'store'])->name('print.store');
+    Route::delete('destroy/{printedItem}', [PrintedItemController::class, 'destroy'])->name('print.destroy');
 });
 
 

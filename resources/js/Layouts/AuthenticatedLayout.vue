@@ -21,7 +21,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="relative shrink-0 flex items-center">
                                 <Link class="logo" :href="route('filament.index')">
-                                    Print Manager
+                                    Xtrood
                                 </Link>
                             </div>
 
@@ -34,6 +34,14 @@ const showingNavigationDropdown = ref(false);
 
                                 <NavLink :href="route('filament.create')" :active="route().current('filament.create')">
                                     Add Roll
+                                </NavLink>
+
+                                <NavLink :href="route('print.index')" :active="route().current('print.index')">
+                                    Print Library
+                                </NavLink>
+
+                                <NavLink :href="route('print.create')" :active="route().current('print.create')">
+                                    Add Print
                                 </NavLink>
                             </div>
                         </div>
