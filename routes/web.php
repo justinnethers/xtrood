@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FilamentController;
 use App\Http\Controllers\FilamentUsageController;
 use App\Http\Controllers\PrintedItemController;
