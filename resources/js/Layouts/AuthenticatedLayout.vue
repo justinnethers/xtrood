@@ -29,19 +29,7 @@ const showingNavigationDropdown = ref(false);
 
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('filament.index')" :active="route().current('filament.index')">
-                                    Filament Inventory
-                                </NavLink>
-
-                                <NavLink :href="route('filament.create')" :active="route().current('filament.create')">
-                                    Add Roll
-                                </NavLink>
-
-                                <NavLink :href="route('print.index')" :active="route().current('print.index')">
-                                    Print Library
-                                </NavLink>
-
-                                <NavLink :href="route('print.create')" :active="route().current('print.create')">
-                                    Add Print
+                                    Filament
                                 </NavLink>
                             </div>
                         </div>

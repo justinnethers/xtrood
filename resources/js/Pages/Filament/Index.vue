@@ -1,5 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import NavLink from '@/Components/NavLink.vue';
 import {Head, usePage} from '@inertiajs/vue3';
 import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
@@ -42,7 +43,10 @@ const fullRollsGroupedByColor = computed(() => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h1 class="text-slate-50">Filament Inventory</h1>
+            <div class="flex justify-between">
+                <h1 class="text-slate-50">Filament Inventory</h1>
+                <NavLink :href="route('filament.create')">Add Roll</NavLink>
+            </div>
         </template>
 
         <div class="">
