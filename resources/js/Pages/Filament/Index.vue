@@ -123,6 +123,10 @@ const fullRollsGroupedByColor = computed(() => {
                     </ul>
                 </div>
 
+                <div v-if="!emptyRolls.length && !fullRolls.length && !partialRolls.length">
+                    <NavLink :href="route('filament.create')">Add Roll</NavLink>
+                </div>
+
 
             </div>
         </div>
