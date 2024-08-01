@@ -45,7 +45,7 @@ const handleAdd = (event, type) => {
 }
 
 function submit() {
-    router.post('/filament', form);
+    router.post('/filaments', form);
     console.log(form);
 
 }
