@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FilamentController;
+use App\Http\Controllers\FilamentTypeController;
 use App\Http\Controllers\FilamentUsageController;
 use App\Http\Controllers\PrintedItemController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +51,10 @@ Route::post('brands', [BrandController::class, 'store'])
 Route::post('colors', [ColorController::class, 'store'])
     ->middleware('auth')
     ->name('colors.store');
+
+Route::post('filament-types', [FilamentTypeController::class, 'store'])
+    ->middleware('auth')
+    ->name('filament-types.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

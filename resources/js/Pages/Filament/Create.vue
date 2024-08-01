@@ -8,6 +8,7 @@ import {computed, onMounted, reactive, ref} from "vue";
 import Modal from "@/Components/Modal.vue";
 import BrandForm from "@/Pages/Filament/partials/BrandForm.vue";
 import ColorForm from "@/Pages/Filament/partials/ColorForm.vue";
+import FilamentTypeForm from "@/Pages/Filament/partials/FilamentTypeForm.vue";
 
 const page = usePage()
 
@@ -27,35 +28,26 @@ const form = reactive({
     notes: '',
 });
 
-const showBrandModal = ref(false);
-const showColorModal = ref(false);
+const showModals = ref({
+    brand: false,
+    color: false,
+    filamentType: false,
+});
+
+const handleAdd = (event, type) => {
+    const id = event.target.value;
+    console.log(id, type)
+    if (id === 'add') {
+        showModals.value[type] = true;
+    } else {
+        showModals.value[type] = false;
+    }
+}
 
 function submit() {
     router.post('/filament', form);
     console.log(form);
 
-}
-const handleBrand = (event) => {
-    const brandId = event.target.value;
-
-    if (brandId === 'add') {
-        console.log('add brand');
-        showBrandModal.value = true;
-    } else {
-        showBrandModal.value = false;
-    }
-}
-
-const handleColor = (event) => {
-    const colorId = event.target.value;
-    console.log(colorId);
-
-    if (colorId === 'add') {
-        console.log('add color');
-        showColorModal.value = true;
-    } else {
-        showColorModal.value = false;
-    }
 }
 </script>
 
@@ -68,17 +60,24 @@ const handleColor = (event) => {
         </template>
 
         <div>
-            <Modal :show="showBrandModal" @close="showBrandModal = false">
+            <Modal :show="showModals['brand']" @close="showModals['brand'] = false">
                 <div class="p-8">
                     <h2 class="text-slate-50">Add a brand</h2>
-                    <BrandForm @submitted="showBrandModal = false" />
+                    <BrandForm @submitted="showModals['brand'] = false" />
                 </div>
             </Modal>
 
-            <Modal :show="showColorModal" @close="showColorModal = false">
+            <Modal :show="showModals['color']" @close="showModals['color'] = false">
                 <div class="p-8">
                     <h2 class="text-slate-50">Add a color</h2>
-                    <ColorForm @submitted="showColorModal = false" />
+                    <ColorForm @submitted="showModals['color'] = false" />
+                </div>
+            </Modal>
+
+            <Modal :show="showModals['filamentType']" @close="showModals['filamentType'] = false">
+                <div class="p-8">
+                    <h2 class="text-slate-50">Add a filament type</h2>
+                    <FilamentTypeForm @submitted="showModals['filamentType'] = false" />\
                 </div>
             </Modal>
 
@@ -88,7 +87,12 @@ const handleColor = (event) => {
                         <div class="flex gap-4">
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="brand" value="Brand" />
-                                <select name="brand_id" id="brand_id" v-on:change="handleBrand" v-model="form.brand_id">
+                                <select
+                                    name="brand_id"
+                                    id="brand_id"
+                                    v-on:change="handleAdd($event, 'brand')"
+                                    v-model="form.brand_id"
+                                >
                                     <option value="" selected>Select a brand</option>
                                     <option v-for="brand in brands" :value="brand.id">{{ brand.name }}</option>
                                     <option value="add">Add a brand</option>
@@ -96,7 +100,12 @@ const handleColor = (event) => {
                             </div>
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="color" value="Color" />
-                                <select name="color_id" id="color_id" v-on:change="handleColor" v-model="form.color_id">
+                                <select
+                                    name="color_id"
+                                    id="color_id"
+                                    v-on:change="handleAdd($event, 'color')"
+                                    v-model="form.color_id"
+                                >
                                     <option value="" selected>Select a color</option>
                                     <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
                                     <option value="add">Add a color</option>
@@ -107,9 +116,15 @@ const handleColor = (event) => {
                         <div class="flex gap-4">
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="material" value="Material" />
-                                <select name="filament_type_id" id="filament_type_id" v-model="form.filament_type_id">
+                                <select
+                                    name="filament_type_id"
+                                    id="filament_type_id"
+                                    v-on:change="handleAdd($event, 'filamentType')"
+                                    v-model="form.filament_type_id"
+                                >
                                     <option value="" selected>Select a material</option>
                                     <option v-for="type in filamentTypes" :value="type.id">{{ type.name }}</option>
+                                    <option value="add">Add a filament type</option>
                                 </select>
                             </div>
                             <div class="flex flex-col flex-1">
