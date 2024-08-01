@@ -39,7 +39,8 @@ class FilamentController extends Controller
             'color_id' => 'required',
             'weight' => 'required',
             'diameter' => 'required',
-            'price' => 'numeric'
+            'price' => 'numeric',
+            'number_of_rolls' => 'integer'
         ]);
 
         $filament = Filament::firstOrCreate([
@@ -48,12 +49,14 @@ class FilamentController extends Controller
             'color_id' => $request->color_id,
         ]);
 
-        auth()->user()->filamentRolls()->create([
-            'filament_id' => $filament->id,
-            'weight' => $request->weight,
-            'diameter' => $request->diameter,
-            'price' => $request->price,
-        ]);
+        collect(range(1, $request->number_of_rolls))->each(function () use ($request, $filament) {
+            auth()->user()->filamentRolls()->create([
+                'filament_id' => $filament->id,
+                'weight' => $request->weight,
+                'diameter' => $request->diameter,
+                'price' => $request->price,
+            ]);
+        });
 
         return to_route('filament.index');
     }

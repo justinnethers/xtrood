@@ -26,6 +26,7 @@ const form = reactive({
     purchase_date: '',
     purchase_location: '',
     notes: '',
+    number_of_rolls: '1',
 });
 
 const showModals = ref({
@@ -110,6 +111,15 @@ function submit() {
                                     <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
                                     <option value="add">Add a color</option>
                                 </select>
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <InputLabel for="number_of_rolls" value="Number of Rolls" />
+                                <TextInput
+                                    type="number"
+                                    name="number_of_rolls"
+                                    id="number_of_rolls"
+                                    v-model="form.number_of_rolls"
+                                />
                             </div>
                         </div>
 
