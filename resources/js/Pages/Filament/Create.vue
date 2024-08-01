@@ -143,22 +143,22 @@ function submit() {
                         <div class="flex gap-4">
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="price" value="Price" />
-                                <TextInput name="price" id="price" />
+                                <TextInput name="price" id="price" v-model.number="form.price" />
                             </div>
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="purchase_date" value="Purchase Date" />
-                                <TextInput type="date" id="purchase_date" name="purchase_date" />
+                                <TextInput type="date" id="purchase_date" name="purchase_date" v-model="form.purchase_date" />
                             </div>
                             <div class="flex flex-col flex-1">
                                 <InputLabel for="purchase_location" value="Purchase Location" />
-                                <TextInput name="purchase_location" id="purchase_location" />
+                                <TextInput name="purchase_location" id="purchase_location" v-model="form.purchase_location" />
                             </div>
                         </div>
 
 
                         <div class="flex flex-col">
                             <InputLabel for="notes" value="Notes" />
-                            <textarea name="notes" id="notes" />
+                            <textarea name="notes" id="notes" v-model="form.notes" />
                         </div>
                         <div class="flex flex-col">
                             <button class="button" type="submit">Add Roll</button>

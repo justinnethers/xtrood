@@ -39,9 +39,10 @@ class FilamentController extends Controller
             'color_id' => 'required',
             'weight' => 'required',
             'diameter' => 'required',
+            'price' => 'numeric'
         ]);
 
-        $filament = Filament::create([
+        $filament = Filament::firstOrCreate([
             'brand_id' => $request->brand_id,
             'filament_type_id' => $request->filament_type_id,
             'color_id' => $request->color_id,
@@ -51,6 +52,7 @@ class FilamentController extends Controller
             'filament_id' => $filament->id,
             'weight' => $request->weight,
             'diameter' => $request->diameter,
+            'price' => $request->price,
         ]);
 
         return to_route('filament.index');
