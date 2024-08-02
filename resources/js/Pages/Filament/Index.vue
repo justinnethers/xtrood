@@ -27,12 +27,13 @@ const emptyRolls = computed(() => filamentRolls.value.filter(roll => {
     return true;
 }));
 
-const fullRollsGroupedByColor = computed(() => {
+const fullRollsGroupedByColorAndBrand = computed(() => {
+
     return fullRolls.value.reduce((acc, roll) => {
-        if (!acc[roll?.filament.color.name]) {
-            acc[roll?.filament.color.name] = [];
+        if (!acc[roll?.filament.color.name+roll?.filament.brand.name]) {
+            acc[roll?.filament.color.name+roll?.filament.brand.name] = [];
         }
-        acc[roll?.filament.color.name].push(roll);
+        acc[roll?.filament.color.name+roll?.filament.brand.name].push(roll);
         return acc;
     }, {});
 });
@@ -73,7 +74,7 @@ const fullRollsGroupedByColor = computed(() => {
                     <h2 class="text-slate-50 mb-4">Sealed Rolls</h2>
                     <ul class="grid grid-cols-4 gap-6">
                         <li
-                            v-for="color in fullRollsGroupedByColor"
+                            v-for="color in fullRollsGroupedByColorAndBrand"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner"
                         >
                             <div v-if="color.length == 1">
