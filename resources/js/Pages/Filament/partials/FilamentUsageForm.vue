@@ -34,7 +34,7 @@ const form = reactive({
 const emit = defineEmits(['submitted']);
 
 function submit() {
-    router.post('/filament/use', form);
+    router.post('/filaments/use', form);
     emit('submitted')
 };
 

@@ -87,8 +87,8 @@ const fullRollsGroupedByColor = computed(() => {
                             </div>
                             <div v-else>
                                 <div class="relative">
-                                <span
-                                    class="absolute right-0 mr-3 bg-gradient-to-br from-green-600 to-green-800 p-2.5 text-blue-50 text-2xl font-bold rounded-b shadow-xl">{{
+                                    <span
+                                        class="absolute right-0 mr-3 bg-gradient-to-br from-green-600 to-green-800 p-2.5 text-blue-50 text-2xl font-bold rounded-b shadow-xl">{{
                                         color.length
                                     }}</span>
                                     <FilamentRoll
@@ -96,7 +96,7 @@ const fullRollsGroupedByColor = computed(() => {
                                         :rotate="true"
                                         class="pt-3 pb-1"
                                     />
-                                    <RollInformation :show-remaining="false" :roll="color[0]"/>
+                                    <RollInformation :multiple-rolls="!!color.length" :show-remaining="false" :roll="color[0]"/>
                                 </div>
                             </div>
                         </li>

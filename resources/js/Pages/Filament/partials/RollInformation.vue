@@ -1,10 +1,18 @@
 <template>
     <div class="flex flex-col w-full">
         <div class="text-2xl">
-            <Link :href="route('filament.show', {filamentRoll: roll.id})" class="cursor-pointer hover:underline">
-                <h3>{{ roll.filament.brand.name }}</h3>
-                <p>{{ roll.filament.color.name }} {{ roll.filament.filament_type.name }}</p>
-            </Link>
+            <div v-if="multipleRolls">
+                <Link :href="route('filament.show-color', {color: roll.filament.color.id, brand: roll.filament.brand.id, filament_type: roll.filament.filament_type.id})" class="cursor-pointer hover:underline">
+                    <h3>{{ roll.filament.brand.name }}</h3>
+                    <p>{{ roll.filament.color.name }} {{ roll.filament.filament_type.name }}</p>
+                </Link>
+            </div>
+            <div v-else>
+                <Link :href="route('filament.show', {filamentRoll: roll.id})" class="cursor-pointer hover:underline">
+                    <h3>{{ roll.filament.brand.name }}</h3>
+                    <p>{{ roll.filament.color.name }} {{ roll.filament.filament_type.name }}</p>
+                </Link>
+            </div>
             <p v-if="showRemaining">
                 <span v-if="remainingWeight">
                     ~<span class="font-bold">{{ remainingWeight }}g</span> left
@@ -48,6 +56,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    multipleRolls: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const remainingWeight = computed(() => {
