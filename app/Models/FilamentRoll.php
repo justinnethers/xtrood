@@ -27,4 +27,9 @@ class FilamentRoll extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function hasBeenUsed()
+    {
+        return $this->weight < 1000 || $this->usages->isNotEmpty();
+    }
 }

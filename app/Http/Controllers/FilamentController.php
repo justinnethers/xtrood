@@ -46,7 +46,7 @@ class FilamentController extends Controller
         $filamentRolls = FilamentRoll::where('filament_id', $filament->id)->with('usages')->get();
 
         $filamentRolls = $filamentRolls->filter(function ($filamentRoll) {
-            return $filamentRoll->usages->isEmpty();
+            return !$filamentRoll->hasBeenUsed();
         });
 
         return inertia('Filament/ShowColor', [

@@ -5,18 +5,19 @@ import {Head, usePage} from '@inertiajs/vue3';
 import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
 import {computed} from "vue";
+import {hasBeenUsed} from "@/utils.js";
 
 const page = usePage();
 
 const filamentRolls = computed(() => page.props.filamentRolls);
 
-const fullRolls = computed(() => filamentRolls.value.filter(roll => roll.usages.length == 0));
+const fullRolls = computed(() => filamentRolls.value.filter(roll => !hasBeenUsed(roll)))
 const partialRolls = computed(() => filamentRolls.value.filter(roll => {
     const weight = roll.weight - roll.usages.reduce((sum, item) => sum + item.weight, 0);
     if (Math.max(0, weight) == 0) {
         return false;
     }
-    return roll.usages.length > 0;
+    return hasBeenUsed(roll);
 }));
 const emptyRolls = computed(() => filamentRolls.value.filter(roll => {
     const weight = roll.weight - roll.usages.reduce((sum, item) => sum + item.weight, 0);
