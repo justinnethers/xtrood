@@ -54,7 +54,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
         <div class="">
             <div class="p-8 bg-slate-700 rounded">
                 <div v-if="partialRolls.length">
-                    <h2 class="text-slate-50 mb-4">Partial Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
                     <ul class="grid grid-cols-3 gap-6">
                         <li
                             v-for="roll in partialRolls"
@@ -71,7 +71,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
                 </div>
 
                 <div v-if="fullRolls.length">
-                    <h2 class="text-slate-50 mb-4">Sealed Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Sealed Rolls <small class="font-light">(<span v-html="fullRolls.length"></span>)</small></h2>
                     <ul class="grid grid-cols-4 gap-6">
                         <li
                             v-for="color in fullRollsGroupedByColorAndBrand"
@@ -109,7 +109,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
 
 
                 <div v-if="emptyRolls.length">
-                    <h2 class="text-slate-50 mb-4">Empty Rolls</h2>
+                    <h2 class="text-slate-50 mb-4">Empty Rolls <small class="font-light">(<span v-html="emptyRolls.length"></span>)</small></h2>
                     <ul class="grid grid-cols-5 gap-6">
                         <li
                             v-for="roll in emptyRolls"
