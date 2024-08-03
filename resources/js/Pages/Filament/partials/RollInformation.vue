@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col w-full">
-        <div class="text-2xl">
+        <div class="md:text-2xl">
             <div v-if="multipleRolls">
                 <Link :href="route('filament.show-color', {color: roll.filament.color.id, brand: roll.filament.brand.id, filament_type: roll.filament.filament_type.id})" class="cursor-pointer hover:underline">
                     <h3>{{ roll.filament.brand.name }}</h3>
