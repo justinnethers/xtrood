@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
                 <transition name="slide-up-down">
                     <div
                         v-if="filterBarVisible"
-                        class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 grid grid-cols-2 md:flex gap-3 p-3"
+                        class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 grid grid-cols-2 md:flex gap-1 md:gap-3 p-1.5 md:p-3"
                         ref="filterBarRef"
                     >
 <!--                        <div-->
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
                         </div>
 
                         <div class="flex items-end">
-                            <PrimaryButton @click="clearFilters">Clear</PrimaryButton>
+                            <button class="p-2 bg-slate-100 text-slate-950 w-full" @click="clearFilters">Clear</button>
                         </div>
                     </div>
                 </transition>

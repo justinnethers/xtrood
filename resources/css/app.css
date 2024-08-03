@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-input, textarea, select, date, input[type="date"] {
+input, textarea, select, date, button, input[type="date"] {
     @apply border border-gray-700 rounded-md text-black bg-gray-900 text-gray-300
 }
 
