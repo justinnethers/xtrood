@@ -193,7 +193,7 @@ onBeforeUnmount(() => {
                             <FilamentRoll
                                 :roll="roll"
                             />
-                            <RollInformation :roll="roll"/>
+                            <RollInformation text-size="text-4xl md:text-2xl" :roll="roll"/>
                         </li>
                     </ul>
 
@@ -214,7 +214,7 @@ onBeforeUnmount(() => {
                                         :rotate="true"
                                         class="pt-3 pb-1"
                                     />
-                                    <RollInformation :show-remaining="false" :roll="roll"/>
+                                    <RollInformation text-size="text-xl md:text-2xl" :show-remaining="false" :roll="roll"/>
                                 </div>
                             </div>
                             <div v-else>
@@ -228,7 +228,7 @@ onBeforeUnmount(() => {
                                         :rotate="true"
                                         class="pt-3 pb-1"
                                     />
-                                    <RollInformation :multiple-rolls="!!color.length" :show-remaining="false" :roll="color[0]"/>
+                                    <RollInformation text-size="text-xl md:text-2xl" :multiple-rolls="!!color.length" :show-remaining="false" :roll="color[0]"/>
                                 </div>
                             </div>
                         </li>
@@ -250,7 +250,7 @@ onBeforeUnmount(() => {
                                 :rotate="true"
                                 class="pt-3 pb-1"
                             />
-                            <RollInformation :show-remaining="false" :roll="roll" :is-empty="true" />
+                            <RollInformation text-size="text-xl md:text-2xl" :show-remaining="false" :roll="roll" :is-empty="true" />
                         </li>
                     </ul>
                 </div>
