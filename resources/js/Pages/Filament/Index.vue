@@ -55,7 +55,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
             <div class="p-8 bg-slate-700 rounded">
                 <div v-if="partialRolls.length">
                     <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-3 gap-6">
+                    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <li
                             v-for="roll in partialRolls"
                             class="flex gap-6 bg-gray-300 p-6 rounded-md shadow-inner hover:shadow-2xl"
@@ -72,7 +72,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
 
                 <div v-if="fullRolls.length">
                     <h2 class="text-slate-50 mb-4">Sealed Rolls <small class="font-light">(<span v-html="fullRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-4 gap-6">
+                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <li
                             v-for="color in fullRollsGroupedByColorAndBrand"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner"
@@ -110,7 +110,7 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
 
                 <div v-if="emptyRolls.length">
                     <h2 class="text-slate-50 mb-4">Empty Rolls <small class="font-light">(<span v-html="emptyRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-5 gap-6">
+                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         <li
                             v-for="roll in emptyRolls"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner hover:shadow-2xl"
