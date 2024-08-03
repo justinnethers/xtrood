@@ -96,7 +96,7 @@ function clearFilters() {
         <div class="">
             <div @click="filterBarVisible = !filterBarVisible" class="absolute block z-50 right-0 bg-blue-50 cursor-pointer p-2 rounded-br-none rounded-bl-none">|||</div>
             <transition name="slide-up-down">
-            <div v-if="filterBarVisible" class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 flex gap-3 p-3 pt-1">
+            <div v-if="filterBarVisible" class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 grid grid-cols-2 md:flex gap-3 p-3 pt-1">
                 <div class="w-full">
                     <InputLabel for="brand" value="Brand" />
                     <select class="w-full" id="brand" name="brand" v-model="brandFilter">
