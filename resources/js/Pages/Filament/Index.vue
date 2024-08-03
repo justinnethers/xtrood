@@ -4,12 +4,46 @@ import NavLink from '@/Components/NavLink.vue';
 import {Head, usePage} from '@inertiajs/vue3';
 import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {hasBeenUsed} from "@/utils.js";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import InputLabel from "@/Components/InputLabel.vue";
 
 const page = usePage();
 
-const filamentRolls = computed(() => page.props.filamentRolls);
+const brandFilter = ref("");
+const filamentTypeFilter = ref("");
+const colorFilter = ref("");
+
+const filamentRolls = computed(() => {
+    let rolls = page.props.filamentRolls;
+
+    if(brandFilter.value) {
+        rolls = rolls.filter(roll => roll.filament.brand.name === brandFilter.value);
+    }
+
+    if(filamentTypeFilter.value) {
+        rolls = rolls.filter(roll => roll.filament.type === filamentTypeFilter.value);
+    }
+
+    if(colorFilter.value) {
+        rolls = rolls.filter(roll => roll.filament.color.name === colorFilter.value);
+    }
+
+    return rolls;
+});
+
+const brands = computed(() => {
+    return Array.from(new Set(page.props.filamentRolls.map(roll => roll.filament.brand.name)));
+});
+
+const filamentTypes = computed(() => {
+    return Array.from(new Set(page.props.filamentRolls.map(roll => roll.filament.type)));
+});
+
+const colors = computed(() => {
+    return Array.from(new Set(page.props.filamentRolls.map(roll => roll.filament.color.name)));
+});
 
 const fullRolls = computed(() => filamentRolls.value.filter(roll => !hasBeenUsed(roll)))
 const partialRolls = computed(() => filamentRolls.value.filter(roll => {
@@ -38,6 +72,12 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
     }, {});
 });
 
+function clearFilters() {
+    brandFilter.value = "";
+    filamentTypeFilter.value = "";
+    colorFilter.value = "";
+}
+
 </script>
 
 <template>
@@ -52,7 +92,36 @@ const fullRollsGroupedByColorAndBrand = computed(() => {
         </template>
 
         <div class="">
-            <div class="p-8 bg-slate-700 rounded">
+            <div class="z-50 fixed bottom-0 right-0 left-0 bg-slate-800 flex gap-3 p-3 pt-1">
+                <div class="w-full">
+                    <InputLabel for="brand" value="Brand" />
+                    <select class="w-full" id="brand" name="brand" v-model="brandFilter">
+                        <option value="">All Brands</option>
+                        <option v-for="brand in brands" :value="brand" :key="brand">{{ brand }}</option>
+                    </select>
+                </div>
+
+                <div class="w-full">
+                    <InputLabel for="type" value="Filament Type" />
+                    <select class="w-full" id="type" name="type" v-model="filamentTypeFilter">
+                        <option value="">All Types</option>
+                        <option v-for="type in filamentTypes" :value="type" :key="type">{{ type }}</option>
+                    </select>
+                </div>
+
+                <div class="w-full">
+                    <InputLabel for="color" value="Color" />
+                    <select class="w-full" id="color" name="color" v-model="colorFilter">
+                        <option value="">All Colors</option>
+                        <option v-for="color in colors" :value="color" :key="color">{{ color }}</option>
+                    </select>
+                </div>
+
+                <div class="flex items-end">
+                    <PrimaryButton @click="clearFilters">Clear</PrimaryButton>
+                </div>
+            </div>
+            <div class="p-8 bg-slate-700 rounded pb-28">
                 <div v-if="partialRolls.length">
                     <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
                     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
