@@ -177,7 +177,12 @@ onBeforeUnmount(() => {
                 </transition>
             </div>
 
-            <div class="p-8 bg-slate-700 rounded pb-28">
+            <div
+                class="p-4 md:p-8 bg-slate-700 rounded transition-all duration-500"
+                :style="{
+                    paddingBottom: filterBarVisible ? `calc(${filterBarHeight}px + 2rem)` : '2rem'
+                }"
+            >
                 <div v-if="partialRolls.length">
                     <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
                     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
