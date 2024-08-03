@@ -11,6 +11,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 
 const page = usePage();
 
+const filterBarVisible = ref(true);
+
 const brandFilter = ref("");
 const filamentTypeFilter = ref("");
 const colorFilter = ref("");
@@ -23,7 +25,7 @@ const filamentRolls = computed(() => {
     }
 
     if(filamentTypeFilter.value) {
-        rolls = rolls.filter(roll => roll.filament.type === filamentTypeFilter.value);
+        rolls = rolls.filter(roll => roll.filament.filament_type.name === filamentTypeFilter.value);
     }
 
     if(colorFilter.value) {
@@ -38,7 +40,7 @@ const brands = computed(() => {
 });
 
 const filamentTypes = computed(() => {
-    return Array.from(new Set(page.props.filamentRolls.map(roll => roll.filament.type)));
+    return Array.from(new Set(page.props.filamentRolls.map(roll => roll.filament.filament_type.name)));
 });
 
 const colors = computed(() => {
@@ -92,7 +94,9 @@ function clearFilters() {
         </template>
 
         <div class="">
-            <div class="z-50 fixed bottom-0 right-0 left-0 bg-slate-800 flex gap-3 p-3 pt-1">
+            <div @click="filterBarVisible = !filterBarVisible" class="absolute block z-50 right-0 bg-blue-50 cursor-pointer p-2 rounded-br-none rounded-bl-none">|||</div>
+            <transition name="slide-up-down">
+            <div v-if="filterBarVisible" class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 flex gap-3 p-3 pt-1">
                 <div class="w-full">
                     <InputLabel for="brand" value="Brand" />
                     <select class="w-full" id="brand" name="brand" v-model="brandFilter">
@@ -121,6 +125,7 @@ function clearFilters() {
                     <PrimaryButton @click="clearFilters">Clear</PrimaryButton>
                 </div>
             </div>
+            </transition>
             <div class="p-8 bg-slate-700 rounded pb-28">
                 <div v-if="partialRolls.length">
                     <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
@@ -203,3 +208,20 @@ function clearFilters() {
         </div>
     </AuthenticatedLayout>
 </template>
+
+<style scoped>
+.slide-up-down-enter-active,
+.slide-up-down-leave-active {
+    transition: transform 0.5s;
+}
+
+.slide-up-down-enter-from,
+.slide-up-down-leave-to {
+    transform: translateY(100%);
+}
+
+.slide-up-down-enter-to,
+.slide-up-down-leave-from {
+    transform: translateY(0);
+}
+</style>
