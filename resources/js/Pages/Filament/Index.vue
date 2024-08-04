@@ -6,7 +6,6 @@ import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
 import {computed, nextTick, onBeforeUnmount, onMounted, ref} from "vue";
 import {hasBeenUsed} from "@/utils.js";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 
 const page = usePage();
@@ -142,10 +141,6 @@ onBeforeUnmount(() => {
                         class="z-40 fixed bottom-0 right-0 left-0 bg-slate-800 grid grid-cols-2 md:flex gap-1 md:gap-3 p-1.5 md:p-3"
                         ref="filterBarRef"
                     >
-<!--                        <div-->
-<!--                            @click="filterBarVisible = !filterBarVisible"-->
-<!--                            class="absolute right-0 mr-2 -mt-8 flex items-center justify-center z-50 top-0 h-8 bg-blue-50 cursor-pointer p-2 rounded-br-none rounded-bl-none"-->
-<!--                        >Filters</div>-->
                         <div class="w-full">
                             <InputLabel for="brand" value="Brand" />
                             <select class="w-full" id="brand" name="brand" v-model="brandFilter">
@@ -185,15 +180,15 @@ onBeforeUnmount(() => {
             >
                 <div v-if="partialRolls.length">
                     <h2 class="text-slate-50 mb-4">Partial Rolls <small class="font-light">(<span v-html="partialRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         <li
                             v-for="roll in partialRolls"
-                            class="flex gap-6 bg-gray-300 p-6 rounded-md shadow-inner hover:shadow-2xl"
+                            class="flex gap-4 md:gap-6 bg-gray-300 p-6 rounded-md shadow-inner hover:shadow-2xl"
                         >
                             <FilamentRoll
                                 :roll="roll"
                             />
-                            <RollInformation text-size="text-4xl md:text-2xl" :roll="roll"/>
+                            <RollInformation text-size="text-3xl md:text-2xl" :roll="roll"/>
                         </li>
                     </ul>
 
@@ -202,7 +197,7 @@ onBeforeUnmount(() => {
 
                 <div v-if="fullRolls.length">
                     <h2 class="text-slate-50 mb-4">Sealed Rolls <small class="font-light">(<span v-html="fullRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                         <li
                             v-for="color in fullRollsGroupedByColorAndBrand"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner"
@@ -220,7 +215,7 @@ onBeforeUnmount(() => {
                             <div v-else>
                                 <div class="relative">
                                     <span
-                                        class="absolute right-0 mr-3 bg-gradient-to-br from-green-600 to-green-800 p-2.5 text-blue-50 text-2xl font-bold rounded-b shadow-xl">{{
+                                        class="absolute z-30 right-0 mr-3 bg-gradient-to-br from-green-600 to-green-800 p-2.5 text-blue-50 text-2xl font-bold rounded-b shadow-xl">{{
                                         color.length
                                     }}</span>
                                     <FilamentRoll
@@ -240,7 +235,7 @@ onBeforeUnmount(() => {
 
                 <div v-if="emptyRolls.length">
                     <h2 class="text-slate-50 mb-4">Empty Rolls <small class="font-light">(<span v-html="emptyRolls.length"></span>)</small></h2>
-                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
                         <li
                             v-for="roll in emptyRolls"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner hover:shadow-2xl"
@@ -258,8 +253,6 @@ onBeforeUnmount(() => {
                 <div v-if="!emptyRolls.length && !fullRolls.length && !partialRolls.length">
                     <NavLink :href="route('filament.create')">Add Roll</NavLink>
                 </div>
-
-
             </div>
         </div>
     </AuthenticatedLayout>
