@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {computed} from "vue";
-import FilamentRoll from "@/Components/FilamentRoll.vue";
+import TheFilamentRoll from "@/Components/TheFilamentRoll.vue";
 
 const page = usePage();
 
@@ -23,7 +23,7 @@ const remainingWeight = computed(() => roll.value.weight - roll.value.usages.red
                 </span>
                 </h1>
                 <div class="flex-1"></div>
-                <FilamentRoll :roll="roll" :rotate="true"/>
+                <TheFilamentRoll :roll="roll" :rotate="true"/>
             </div>
         </template>
 

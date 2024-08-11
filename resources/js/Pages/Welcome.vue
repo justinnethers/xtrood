@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import FilamentRoll from "@/Components/FilamentRoll.vue";
+import TheFilamentRoll from "@/Components/TheFilamentRoll.vue";
 
 defineProps({
     filamentRolls: {
@@ -24,9 +24,9 @@ defineProps({
             <pre>{{ filamentRolls }}</pre>
         </div>
         <div class="flex gap-4">
-            <FilamentRoll color="green" />
-            <FilamentRoll color="red" height="125px" />
-            <FilamentRoll color="purple" height="90px" />
+            <TheFilamentRoll color="green" />
+            <TheFilamentRoll color="red" height="125px" />
+            <TheFilamentRoll color="purple" height="90px" />
         </div>
     </div>
 </template>

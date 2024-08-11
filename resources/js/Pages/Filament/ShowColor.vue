@@ -2,8 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {computed} from "vue";
-import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
+import TheFilamentRoll from "@/Components/TheFilamentRoll.vue";
 
 const page = usePage();
 
@@ -28,7 +28,7 @@ console.log('rolls', rolls);
                 </span>
                 </h1>
                 <div class="flex-1"></div>
-                <FilamentRoll :roll="rolls[0]" :rotate="true"/>
+                <TheFilamentRoll :roll="rolls[0]" :rotate="true"/>
             </div>
         </template>
 
@@ -39,7 +39,7 @@ console.log('rolls', rolls);
                         v-for="roll in rolls"
                         class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner"
                     >
-                        <FilamentRoll
+                        <TheFilamentRoll
                             :roll="roll"
                             :rotate="true"
                             class="pt-3 pb-1"

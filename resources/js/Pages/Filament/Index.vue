@@ -2,11 +2,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import NavLink from '@/Components/NavLink.vue';
 import {Head, usePage} from '@inertiajs/vue3';
-import FilamentRoll from "@/Components/FilamentRoll.vue";
 import RollInformation from "@/Pages/Filament/partials/RollInformation.vue";
 import {computed, nextTick, onBeforeUnmount, onMounted, reactive, ref} from "vue";
 import {hasBeenUsed} from "@/utils.js";
 import InputLabel from "@/Components/InputLabel.vue";
+import TheFilamentRoll from "@/Components/TheFilamentRoll.vue";
 
 const page = usePage();
 
@@ -233,7 +233,7 @@ onBeforeUnmount(() => {
                             v-for="roll in isRollVisible['partial'] ? partialRolls : []"
                             class="flex gap-4 md:gap-6 bg-gray-300 p-6 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
                         >
-                            <FilamentRoll
+                            <TheFilamentRoll
                                 :roll="roll"
                             />
                             <RollInformation text-size="text-3xl md:text-2xl" :roll="roll"/>
@@ -258,7 +258,7 @@ onBeforeUnmount(() => {
                         >
                             <div v-if="color.length == 1">
                                 <div v-for="roll in color">
-                                    <FilamentRoll
+                                    <TheFilamentRoll
                                         :roll="roll"
                                         :rotate="true"
                                         class="pt-3 pb-1"
@@ -272,7 +272,7 @@ onBeforeUnmount(() => {
                                         class="absolute z-30 right-0 mr-3 bg-gradient-to-br from-green-600 to-green-800 p-2.5 text-blue-50 text-2xl font-bold rounded-b shadow-xl">{{
                                         color.length
                                     }}</span>
-                                    <FilamentRoll
+                                    <TheFilamentRoll
                                         :roll="color[0]"
                                         :rotate="true"
                                         class="pt-3 pb-1"
@@ -303,7 +303,7 @@ onBeforeUnmount(() => {
                             :key="roll.id"
                             class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
                         >
-                            <FilamentRoll
+                            <TheFilamentRoll
                                 :roll="roll"
                                 :rotate="true"
                                 class="pt-3 pb-1"
