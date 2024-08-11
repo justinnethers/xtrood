@@ -17,8 +17,16 @@ import TextInput from "@/Components/TextInput.vue";
 import {reactive} from "vue";
 import {router} from "@inertiajs/vue3";
 
+const props = defineProps({
+    type: {
+        type: String,
+        required: true
+    }
+});
+
 const form = reactive({
     name: '',
+    type: props.type
 })
 
 const emit = defineEmits(['submitted']);

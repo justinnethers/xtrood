@@ -6,7 +6,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import {computed, onMounted, reactive, ref} from "vue";
 import Modal from "@/Components/Modal.vue";
-import BrandForm from "@/Pages/Filament/partials/BrandForm.vue";
+import BrandForm from "@/Components/BrandForm.vue";
 import ColorForm from "@/Pages/Filament/partials/ColorForm.vue";
 import FilamentTypeForm from "@/Pages/Filament/partials/FilamentTypeForm.vue";
 
@@ -64,7 +64,7 @@ function submit() {
             <Modal :show="showModals['brand']" @close="showModals['brand'] = false">
                 <div class="p-8">
                     <h2 class="text-slate-50">Add a brand</h2>
-                    <BrandForm @submitted="showModals['brand'] = false" />
+                    <BrandForm type="resin" @submitted="showModals['brand'] = false" />
                 </div>
             </Modal>
 
