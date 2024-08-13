@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(PrintedItem::class);
     }
+
+    public function userPrinters()
+    {
+        return $this->hasMany(UserPrinter::class);
+    }
 }
