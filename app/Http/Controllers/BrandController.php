@@ -9,8 +9,13 @@ class BrandController extends Controller
 {
     public function store()
     {
-        Brand::create(request()->all());
+        $brand = Brand::create(request()->all());
 
-        return to_route('filament.create');
+        switch(request('type')) {
+            case 'printer':
+                return to_route('user-printers.create', ['brand_id' => $brand->id]);
+            case 'filament':
+                return to_route('filament.create');
+        }
     }
 }
