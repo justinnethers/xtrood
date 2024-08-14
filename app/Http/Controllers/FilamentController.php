@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Filament;
 use App\Models\FilamentRoll;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FilamentController extends Controller
@@ -11,7 +12,15 @@ class FilamentController extends Controller
     public function index()
     {
         return inertia('Filament/Index', [
-            'filamentRolls' => auth()->user()->filamentRolls()->get(),
+            'filamentRolls' => auth()->user()->filamentRolls()
+                ->with(['usages' => function ($query) {
+                    $query->latest();
+                }])
+                ->get()
+                ->sortByDesc(function ($filamentRoll) {
+                    return $filamentRoll->usages->first()->created_at ?? Carbon::createFromTimestamp(0);
+                })
+                ->values(),
         ]);
     }
 
