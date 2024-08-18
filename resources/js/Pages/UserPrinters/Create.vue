@@ -16,15 +16,14 @@
             <Modal :show="showModals['printer']" @close="showModals['printer'] = false">
                 <div class="p-8">
                     <h2 class="text-slate-50">Add a printer</h2>
-                    <ThePrinterForm @submitted="showModals['printer'] = false" />
+                    <ThePrinterForm :brand_id="brand_id" @submitted="showModals['printer'] = false" />
                 </div>
             </Modal>
 
             <div class="p-8 bg-slate-700 rounded">
                 <form @submit.prevent="submit">
-                    <div>{{ brand_id }}</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
+                        <div class="col-span-2">
                             <InputLabel for="nickname" value="Printer Nickname" />
                             <TextInput id="nickname" v-model="form.nickname" type="text" class="mt-1 block w-full" required />
                         </div>
@@ -36,6 +35,7 @@
                                 id="brand_id"
                                 v-on:change="handleAdd($event, 'brand'),handleChange($event)"
                                 v-model="form.brand_id"
+                                class="w-full"
                             >
                                 <option value="" selected>Select a brand</option>
                                 <option v-for="(name, id) in brands" :value="id">{{ name }}</option>
@@ -51,28 +51,15 @@
                                 id="printer_id"
                                 v-on:change="handleAdd($event, 'printer'),handleChange($event, 'printer')"
                                 v-model="form.printer_id"
+                                class="w-full"
+                                :disabled="!brand_id"
                             >
                                 <option value="" selected>Select a printer</option>
-                                <option v-for="(printer, id) in printersOfBrand" :value="id">{{ name }}</option>
+                                <option v-for="printer in printersOfBrand" :value="printer.id">{{ printer.name }}</option>
                                 <option value="add">Add a printer</option>
                             </select>
 
 <!--                            <TextInput id="model" v-model="form.model" type="text" class="mt-1 block w-full" required />-->
-                        </div>
-
-                        <div>
-                            <InputLabel for="bed_size_x" value="Bed Size X (mm)" />
-                            <TextInput id="bed_size_x" v-model="form.bed_size_x" type="number" class="mt-1 block w-full" required />
-                        </div>
-
-                        <div>
-                            <InputLabel for="bed_size_y" value="Bed Size Y (mm)" />
-                            <TextInput id="bed_size_y" v-model="form.bed_size_y" type="number" class="mt-1 block w-full" required />
-                        </div>
-
-                        <div>
-                            <InputLabel for="bed_size_z" value="Bed Size Z (mm)" />
-                            <TextInput id="bed_size_z" v-model="form.bed_size_z" type="number" class="mt-1 block w-full" required />
                         </div>
 
                         <div>
@@ -105,24 +92,21 @@ import Modal from "@/Components/Modal.vue";
 import TheBrandForm from "@/Components/TheBrandForm.vue";
 import ThePrinterForm from "@/Components/ThePrinterForm.vue";
 import useBrandSelector from "@/Composables/useBrandSelector.js";
+import usePrinterSelector from "@/Composables/usePrinterSelector.js";
 
 const page = usePage()
 
 const { brand_id, brands } = useBrandSelector();
+const { printer_id, printers } = usePrinterSelector();
 
-const printers = computed(() => page.props.printers);
 const printersOfBrand = computed(() => {
-    return printers.value.filter(printer => printer.brand_id === form.brand_id);
+    return printers.value.filter(printer => printer.brand_id == brand_id.value);
 });
 
 const form = reactive({
     nickname: '',
     brand_id: '',
     printer_id: '',
-    model: '',
-    bed_size_x: '',
-    bed_size_y: '',
-    bed_size_z: '',
     purchase_date: '',
     purchase_price: '',
 });
@@ -149,10 +133,11 @@ const handleChange = (event, type='brand') => {
 
     if (type === 'brand') {
         form.brand_id = id;
+        brand_id.value = id;
     } else {
         form.printer_id = id;
+        printer_id.value = id;
     }
-    brand_id.value = id;
     nextTick()
 }
 
@@ -164,7 +149,12 @@ watch(brand_id, (newValue) => {
     form.brand_id = newValue;
 })
 
+watch(printer_id, (newValue) => {
+    form.printer_id = newValue;
+})
+
 onMounted(() => {
     form.brand_id = brand_id.value;
+    form.printer_id = printer_id.value;
 })
 </script>

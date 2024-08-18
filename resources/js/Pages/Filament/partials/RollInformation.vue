@@ -23,9 +23,14 @@
             </p>
         </div>
         <div class="flex-1"></div>
-        <div v-if="!isEmpty" class="flex text-sm font-medium">
-            <div class="flex-1"></div>
-            <button @click="useRoll" class="button">Use Roll</button>
+        <div v-if="!isEmpty" class=" text-sm font-medium">
+<!--            <div class="flex-1"></div>-->
+<!--            <button @click="useRoll" class="button">Use Roll</button>-->
+            <div class="mt-4 flex justify-between">
+                <Link :href="route('filament.show', roll.id)" class="text-blue-400 hover:underline">View</Link>
+                <div class="flex-1"></div>
+                <button @click="useRoll" class="text-yellow-400 hover:underline bg-transparent border-none">Use Roll</button>
+            </div>
         </div>
         <Modal :show="showUsageModal" @close="showUsageModal = false">
             <div class="p-8">

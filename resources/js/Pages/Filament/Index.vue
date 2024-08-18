@@ -231,7 +231,7 @@ onBeforeUnmount(() => {
                     <transition-group name="empty-rolls" tag="ul" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         <li
                             v-for="roll in isRollVisible['partial'] ? partialRolls : []"
-                            class="flex gap-4 md:gap-6 bg-gray-300 p-6 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
+                            class="flex gap-4 md:gap-6 bg-slate-600 p-6 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
                         >
                             <TheFilamentRoll
                                 :roll="roll"
@@ -254,7 +254,7 @@ onBeforeUnmount(() => {
                     <transition-group name="empty-rolls" tag="ul" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
                         <li
                             v-for="color in isRollVisible['sealed'] ? fullRollsGroupedByColorAndBrand : []"
-                            class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
+                            class="grid grid-cols-1 px-3 pb-3 bg-slate-600 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
                         >
                             <div v-if="color.length == 1">
                                 <div v-for="roll in color">
@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
                         <li
                             v-for="roll in isRollVisible['empty'] ? emptyRolls : []"
                             :key="roll.id"
-                            class="grid grid-cols-1 px-3 pb-3 bg-gray-300 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
+                            class="grid grid-cols-1 px-3 pb-3 bg-slate-600 rounded-md shadow-inner hover:shadow-2xl empty-roll-item"
                         >
                             <TheFilamentRoll
                                 :roll="roll"

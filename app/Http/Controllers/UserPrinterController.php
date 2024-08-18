@@ -11,7 +11,11 @@ class UserPrinterController extends Controller
 {
     public function index()
     {
-        $userPrinters = auth()->user()->userPrinters()->with('printer', 'filamentRolls')->get();
+        $userPrinters = auth()->user()
+            ->userPrinters()
+            ->with('printer.brand', 'filamentRolls')
+            ->get();
+
         return inertia('UserPrinters/Index', ['userPrinters' => $userPrinters]);
     }
 

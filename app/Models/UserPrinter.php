@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserPrinter extends Model
@@ -27,8 +28,13 @@ class UserPrinter extends Model
         return $this->belongsTo(Printer::class);
     }
 
-    public function filamentRolls()
+    public function filamentRolls(): BelongsToMany
     {
-        return $this->hasMany(FilamentRoll::class);
+        return $this->belongsToMany(FilamentRoll::class)->withTimestamps();
+    }
+
+    public function filamentUsages()
+    {
+        return $this->hasMany(FilamentUsage::class);
     }
 }

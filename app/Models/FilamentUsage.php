@@ -15,4 +15,9 @@ class FilamentUsage extends Model
     {
         return $this->belongsTo(FilamentRoll::class);
     }
+
+    public function userPrinter(): BelongsTo
+    {
+        return $this->belongsTo(UserPrinter::class);
+    }
 }

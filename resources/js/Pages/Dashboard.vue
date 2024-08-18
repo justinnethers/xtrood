@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import FilamentRoll from "@/Components/FilamentRoll.vue";
+import FilamentRoll from "@/Components/TheFilamentRoll.vue";
 import NavLink from "@/Components/NavLink.vue";
 
 defineProps({

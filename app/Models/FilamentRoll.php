@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class FilamentRoll extends Model
 {
@@ -31,5 +32,11 @@ class FilamentRoll extends Model
     public function hasBeenUsed()
     {
         return $this->weight < 1000 || $this->usages->isNotEmpty();
+    }
+
+
+    public function userPrinters(): BelongsToMany
+    {
+        return $this->belongsToMany(UserPrinter::class)->withTimestamps();
     }
 }
